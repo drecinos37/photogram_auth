@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   # READ
   get "/users", :controller => "users", :action => "index"
-  get "/users/:id", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
 
 
 

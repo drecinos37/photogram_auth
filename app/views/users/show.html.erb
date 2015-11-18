@@ -1,30 +1,44 @@
- <h1>List of Photos</h1>
+<div class="Active">
+  <h1>
+    <%= current_user.username %>
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-default table-hover">
 
-<a href="http://localhost:3000/photos/new">Add a New Photo</a>
+      <% @images.each do |photo| %>
 
-<table>
-  <tr>
-    <th>Thumbnail</th>
-    <th>Caption</th>
-    <th colspan="3">Actions</th>
-  </tr>
-  <% @list_of_photos.each do |photo| %>
-  <tr>
-    <td>
-      <img src="<%= photo.source %>" width="80">
-    </td>
-    <td>
-      <%= photo.caption %>
-    </td>
-    <td>
-      <a href="http://localhost:3000/photos/<%= photo.id %>">Show</a>
-    </td>
-    <td>
-      <a href="http://localhost:3000/photos/<%= photo.id %>/edit">Edit</a>
-    </td>
-    <td>
-      <a href="http://localhost:3000/delete_photo/<%= photo.id %>">Delete</a>
-    </td>
-  </tr>
-  <% end %>
-</table>
+
+      <tr>
+      <td >
+       <img src="<%= photo.image %>" class="img-responsive">
+     </td>
+     </tr>
+      <tr>
+
+
+      <% usernames = [] %>
+      <% photo.likes.each do |like| %>
+      <% usernames.push(like.user.username) %>
+      <% end %>
+       <td><a><i class="fa fa-heart" color =blue></i></a>
+       <%= usernames.to_sentence %> like this</td>
+     </tr>
+     <tr>
+
+      <% photo.comments.each do |commented| %>
+
+
+      <td><ul class="media-list"><a><%= commented.user.username %></a>  <c><%= @time.yday - commented.created_at.yday  %> days ago</c><br />
+
+        <%= commented.body%>
+
+
+      </ul></tr>
+
+      <% end %>
+        <% end %>
+    </table>
+  </div>
+</div>
