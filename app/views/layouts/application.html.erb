@@ -40,10 +40,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/comments"><i class="fa fa-users"></i></a></li>
-          <li><a href="/likes"><i class="fa fa-file-image-o"></i></a></li>
-          <li><a href="/photos"><i class="fa fa-heart"></i></a></li>
-          <li><a href="/rails/info"><i class="fa fa-user"></i></a></li>
+          <li><a href="/users"><i class="fa fa-users"></i></a></li>
+          <li><a href="/photos"><i class="fa fa-file-image-o"></i></a></li>
+          <li><a href="/my_likes"><i class="fa fa-heart"></i></a></li>
+          <li><% if user_signed_in? == true %><a href="/users/<%=current_user.id %>"><i class="fa fa-user"></i></a></li>
+           <% elsif user_signed_in? == false %>
+        <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

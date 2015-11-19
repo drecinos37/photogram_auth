@@ -1,12 +1,8 @@
 
 
-<div class="Active">
-  <h1>
-    <%@users%>
-  </h1>
-</div>
+  <% @likes.each do |photo| %>
 
-<% @images.each do |photo| %>
+
 <div class="panel panel-default" >
   <div class="panel-heading" >
     <h3  class="panel-title"><%= photo.user.username %> <%= @time.yday - photo.created_at.yday  %> days ago</h3>
@@ -41,6 +37,8 @@
   </div>
 </div>
 <% end %>
+
+
 
 
 
