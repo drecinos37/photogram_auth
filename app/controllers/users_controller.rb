@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @likes = current_user.liked_photos
     @comments = Comment.where(:photo_id => @images)
     @time = Time.now
-
+    @images = Photo.where(:user_id => params[:id].to_f)
   end
 
 
