@@ -1,10 +1,13 @@
 
 
-<div class="Active">
-  <h1>
-    <%@users%>
-  </h1>
+<div class="jumbotron">
+<h1>
+<% @images.each do |photo| %>
+<%= photo.user.username.capitalize %> <% break%>
+<% end %>
+</h1>
 </div>
+
 
 <% @images.each do |photo| %>
 <div class="panel panel-default" >

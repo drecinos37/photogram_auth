@@ -1,10 +1,16 @@
 class PhotosController < ApplicationController
   def index
     @photos = Photo.all
+    @time = Time.now
+    @comment = Comment.new
+
   end
+
 
   def show
     @photo = Photo.find(params[:id])
+    @time = Time.now
+
   end
 
   def new

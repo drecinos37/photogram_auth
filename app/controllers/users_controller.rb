@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @photo = Photo.all
     @images = Photo.where(:user_id => params[:id].to_f)
-
     @likes = Like.where(:photo_id => @images)
     @comments = Comment.where(:photo_id => @images)
     @time = Time.now
+
 
   end
 
