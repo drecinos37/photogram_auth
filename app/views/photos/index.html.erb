@@ -27,23 +27,22 @@
           <% usernames.push(like.user.username) %>
           <% end %>
 
+
           <td>
-          <% userlikes = [] %>
-          <% photo.likes.each do |like| %>
-          <% if like.user_id == currentuser.id%>
-          <% userlikes.push(like.user_id) %>
-          <% end %>
 
 
-          <%if userlikes.count == 0 %>
+            <%if usernames.count == 0 %>
 
-          <form action="/create_like" method="post"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button></form> <% if usernames.count > 1 %> <%= usernames.to_sentence %> like this  <% elsif usernames.count == 0 %>   Be the first to like this <% elsif usernames.count == 1 %> likes this <%end%>
 
-          <%elsif userlikes =! 0 %>
+              <form action="/create_like" method="post"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button></form> <% if usernames.count > 1 %> <%= usernames.to_sentence %> like this  <% elsif usernames.count == 0 %>   Be the first to like this <% elsif usernames.count == 1 %> likes this <%end%>
 
-          <form action="/delete_like/<% current_user.id %>" method="post"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button></form> <% if usernames.count != 0 %> <%= usernames.to_sentence %> like this  <% elsif usernames.count == 0 %>   Be the first to like this <%end%>
+            <%elsif usernames.count > 0 %>
 
-          <%end%>
+                   <form action="/delete_like/<% current_user.id %>" method="post"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button></form> <% if usernames.count != 0 %> <%= usernames.to_sentence %> like this  <% elsif usernames.count == 0 %>   Be the first to like this
+                   <%end%>
+
+
+            <%end%>
 
 
 
