@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
     @photos = Photo.all
     @time = Time.now
     @comment = Comment.new
-    @likes = Like
+    @likes = Like.all
 
   end
 
