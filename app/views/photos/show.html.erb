@@ -14,7 +14,7 @@
 
           <% usernames = [] %>
           <% @photo.likes.each do |like| %>
-          <% usernames.push(like.user.username) %>
+          <% usernames.push(like.user.username.capitalize) %>
           <% end %>
           <% if usernames.count != 0 %><td><a><i class="fa fa-heart" ></i></a>
           <%= usernames.to_sentence %> like this</td>

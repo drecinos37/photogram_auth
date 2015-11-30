@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @likes = Like.where(:photo_id => @images)
     @comments = Comment.where(:photo_id => @images)
     @time = Time.now
-
+    @likes1 = Like.all
 
   end
 
@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @comments = Comment.where(:photo_id => @images)
     @time = Time.now
     @images = Photo.where(:user_id => params[:id].to_f)
+    @likes1 = Like.all
+
   end
 
 

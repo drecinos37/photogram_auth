@@ -20,13 +20,31 @@
 <tr>
 
 
-      <% usernames = [] %>
-      <% photo.likes.each do |like| %>
-      <% usernames.push(like.user.username) %>
-      <% end %>
-       <td><a><i class="fa fa-heart" color =blue></i></a>
-       <%= usernames.to_sentence %> like this</td>
-     </tr>
+          <% usernames = [] %>
+
+          <% photo.likes.each do |like| %>
+          <% usernames.push(like.user.username.capitalize) %>
+          <% @countofuser = usernames.count(current_user.username.capitalize)%>
+
+          <%if @countofuser == 1%>
+          <% @likedid = @likes1.find_by(user_id:current_user.id, photo_id:photo.id).id %>
+          <%elsif @countofuser == 0%>
+          <% @likedid = nil %>
+          <%end%>
+          <%end%>
+
+
+          <td>
+            <%if @countofuser == 0%>
+            <form action="/create_like" method="post"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button> <%= usernames.to_sentence %> <% if usernames.count > 1 %>  like this  <% elsif usernames.count == 0 %>   Be the first to like this <% elsif usernames.count == 1 %> likes this <%end%></form>
+            <%elsif @countofuser == 1%>
+            <form action="/delete_like/<%= @likedid %>" method="get"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"><input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>"><input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>"><button class="btn btn-link"><a><i class="fa fa-heart" ></i></a></button> <%= usernames.to_sentence.capitalize %> <% if usernames.count > 1 %>  like this  <% elsif usernames.count == 0 %>   Be the first to like this <% elsif usernames.count == 1 %> likes this <%end%></form>
+            <%end%>
+
+          </td>
+
+
+        </tr>
 
       <% photo.comments.each do |commented| %>
 
